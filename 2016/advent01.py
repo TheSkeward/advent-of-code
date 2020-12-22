@@ -27,21 +27,23 @@ def forward(facing, x_axis, y_axis):
 
 
 def solve(command_list):
-    """Returns the position of the first place visited twice"""
+    """Returns distance of first match position and final position"""
     # starting position
     facing, x_axis, y_axis = "N", 0, 0
     visited = []
-    position = "No match found."
+    first_position = "No match found."
+    match = False
     for command in command_list:
         direction, steps = command[0], command[1:]
         facing = turn(facing, direction)
         for _ in range(int(steps)):
             x_axis, y_axis = forward(facing, x_axis, y_axis)
-            if (x_axis, y_axis) in visited:
-                position = abs(x_axis) + abs(y_axis)
-                return position
+            if not match and (x_axis, y_axis) in visited:
+                match = True
+                first_position = abs(x_axis) + abs(y_axis)
             visited.append((x_axis, y_axis))
-    return position
+    final_position = abs(x_axis) + abs(y_axis)
+    return first_position, final_position
 
 
 print(solve(puzzle_input.split(", ")))
