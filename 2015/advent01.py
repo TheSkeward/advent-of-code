@@ -1,4 +1,6 @@
-"""2015 Advent of Code, Day 1"""
+"""
+2015 Advent of Code, Day 1
+"""
 with open("input", "r+") as file:
     puzzle_input = file.read()
 FLOOR = 0
